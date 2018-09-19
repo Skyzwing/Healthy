@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.a59070180.skyzwing.healthy.desll.healthy.Weight.WeightFragment;
+
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
@@ -46,7 +48,7 @@ public class MenuFragment extends Fragment {
                     Log.d("USER", "Go to BMI");
                 }
                 else if (_menu.get(position).equals("Weight")){
-//                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new ).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFragment()).commit();
                 }
             }
         });

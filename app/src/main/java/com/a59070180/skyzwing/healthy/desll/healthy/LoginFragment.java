@@ -14,7 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginFragment extends Fragment{
+
+//    private FirebaseAuth fbAuth;
 
     @Nullable
     @Override
@@ -25,6 +29,7 @@ public class LoginFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+//        fbAuth = FirebaseAuth.getInstance();
         Button _loginBtn = getView().findViewById(R.id.login_login_btn);
         TextView _registerBtn = getView().findViewById(R.id.login_register_btn);
 

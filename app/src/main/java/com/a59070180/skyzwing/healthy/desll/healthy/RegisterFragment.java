@@ -21,7 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterFragment extends Fragment {
 
-    private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
+
+    private FirebaseAuth fbAuth;
 
     @Nullable
     @Override
@@ -35,27 +36,34 @@ public class RegisterFragment extends Fragment {
         initRegisterBtn();
     }
 
-    public void initRegisterBtn(){
+    private void initRegisterBtn(){
 
+        fbAuth = FirebaseAuth.getInstance();
         Button _registerBtn = getView().findViewById(R.id.newAccount);
         _registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+
                 EditText _email = getView().findViewById(R.id.register_email);
                 EditText _password = getView().findViewById(R.id.register_password);
                 EditText _rePassword = getView().findViewById(R.id.register_re_password);
 
-                String _newEmailStr = _email.toString();
-                String _newPasswordStr = _password.toString();
-                String _newRePasswordStr = _rePassword.toString();
+                String _newEmailStr = _email.getText().toString();
+                String _newPasswordStr = _password.getText().toString();
+                String _newRePasswordStr = _rePassword.getText().toString();
 
-                if (_newPasswordStr.equals(_newRePasswordStr)){
+                if (_newEmailStr.isEmpty() || _newPasswordStr.isEmpty() || _newRePasswordStr.isEmpty()){
+                    Toast.makeText(getActivity(), "Can't be blank.", Toast.LENGTH_SHORT).show();
+                    Log.d("REGISTER", "Can't be blank");
+                }
+                else if(_newPasswordStr.equals(_newRePasswordStr)){
+                    Log.d("ss", "sss");
                     fbAuth.createUserWithEmailAndPassword(_newEmailStr, _newPasswordStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             sendVerifiedEmail(authResult.getUser());
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();
                             Toast.makeText(getActivity(), "Register Complete", Toast.LENGTH_SHORT).show();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -63,10 +71,6 @@ public class RegisterFragment extends Fragment {
                             Toast.makeText(getActivity(), "Register Fails", Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else if (_newEmailStr.isEmpty() || _newPasswordStr.isEmpty() || _newRePasswordStr.isEmpty()){
-                    Toast.makeText(getActivity(), "Can't be blank.", Toast.LENGTH_SHORT).show();
-                    Log.d("REGISTER", "Can't be blank");
                 }
             }
         });

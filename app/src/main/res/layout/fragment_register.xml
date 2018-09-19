@@ -47,7 +47,7 @@
                 android:layout_width="285dp" />
 
             <Button
-                android:text="@string/register_account"
+                android:text="@string/register_new_acc"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"

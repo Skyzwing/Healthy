@@ -6,7 +6,7 @@
     <string name="user_id">Username</string>
     <string name="email">Email</string>
     <string name="re_password">Re-password</string>
-    <string name="register_account">Register New Account</string>
+    <string name="register_new_acc">Register New Account</string>
     <string name="weight">Weidth</string>
     <string name="height">Height</string>
     <string name="your_bmi">YOUR BMI</string>
