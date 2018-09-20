@@ -18,6 +18,9 @@ import com.a59070180.skyzwing.healthy.desll.healthy.Weight.WeightFragment;
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
+    public MenuFragment(){
+
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,7 +34,6 @@ public class MenuFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         _menu.add("BMI");
         _menu.add("Weight");
-        _menu.add("Setup");
         _menu.add("Sign out");
 
         final ArrayAdapter<String> _menuAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, _menu);

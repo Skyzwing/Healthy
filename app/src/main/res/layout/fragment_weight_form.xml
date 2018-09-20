@@ -26,11 +26,11 @@
 
             <EditText
                 android:hint="@string/date_form"
-                android:id="@+id/editText3"
+                android:id="@+id/weight_form_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="date" />
 
             <Button
                 android:id="@+id/weight_form_add"
