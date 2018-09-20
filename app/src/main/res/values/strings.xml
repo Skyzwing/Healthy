@@ -17,4 +17,5 @@
     <string name="status">Status</string>
     <string name="add_weight">Add weight</string>
     <string name="date_form">Date (DD/MM/YY)</string>
+    <string name="weight_form">Weight (KG)</string>
 </resources>

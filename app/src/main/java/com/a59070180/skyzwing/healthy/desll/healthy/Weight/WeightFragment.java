@@ -70,11 +70,11 @@ public class WeightFragment extends Fragment {
     }
 
     void initAssignStatus(){
-        for (int i =0 ; weights.size() - 1; i++){
+        for (int i =0 ; i < weights.size() - 1; i++){
             if (weights.get(i).getWeight()> weights.get(i+1).getWeight())
-                weights.get(i).getStatus("UP");
+                weights.get(i).setStatus("UP");
             else if (weights.get(i).getWeight() < weights.get(i+1).getWeight())
-                weights.get(i).getStatus("Down");
+                weights.get(i).setStatus("Down");
         }
     }
 
@@ -83,7 +83,7 @@ public class WeightFragment extends Fragment {
         _addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFromFragment).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFormFragment()).addToBackStack(null).commit();
                 Log.d("USER", "GO TO REGISTER");
             }
         });
