@@ -1,16 +1,23 @@
 package com.a59070180.skyzwing.healthy.desll.healthy.Weight;
 
 public class Weight {
-    private String date;
-    private int weight;
-    private String status;
+    String date;
+    int weight;
+    String status;
 
-    public Weight(){}
+    public Weight(){
+
+    }
 
     public Weight(String date, int weight, String status){
         this.date = date;
         this.weight = weight;
         this.status = status;
+    }
+
+    public Weight(String date, int weight){
+        this.date = date;
+        this.weight = weight;
     }
 
     public String getDate() {

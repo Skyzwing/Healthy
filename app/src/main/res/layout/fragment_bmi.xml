@@ -58,7 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
+                android:id="@+id/name_bmi"
                 android:textSize="30sp" />
 
             <TextView

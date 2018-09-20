@@ -14,11 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginFragment extends Fragment{
 
-//    private FirebaseAuth fbAuth;
+    FirebaseAuth fbAuth;
+    FirebaseFirestore fbStore;
 
     @Nullable
     @Override
@@ -29,10 +34,49 @@ public class LoginFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        fbAuth = FirebaseAuth.getInstance();
-        Button _loginBtn = getView().findViewById(R.id.login_login_btn);
-        TextView _registerBtn = getView().findViewById(R.id.login_register_btn);
+        initLogin();
+        initRegister();
 
+    }
+    void initLogin(){
+        fbAuth = FirebaseAuth.getInstance();
+        Button _loginBtn = getView().findViewById(R.id.login_login_btn);
+        _loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final EditText _userId = getView().findViewById(R.id.login_user_id);
+                EditText _password = getView().findViewById(R.id.login_password);
+                String _userIdStr = _userId.getText().toString();
+                String _passwordStr = _password.getText().toString();
+
+                if (_userIdStr.isEmpty() || _passwordStr.isEmpty()){
+                    Toast.makeText(getActivity(), "Please fill your E-mail and Password.", Toast.LENGTH_SHORT).show();
+                    Log.d("USER", "E-MAIL OR PASSWORD IS EMPTY");
+                }
+                else{
+                    fbAuth.signInWithEmailAndPassword(_userIdStr, _passwordStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            if (fbAuth.getCurrentUser().isEmailVerified()){
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).addToBackStack(null).commit();
+                                Log.d("USER", "GO TO MENU");
+                            }
+                            else
+                                Toast.makeText(getActivity(), "Please verify your E-mail.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), "Please enter correct your E-mail and Password.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    void initRegister(){
+        TextView _registerBtn = getView().findViewById(R.id.login_register_btn);
         _registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,24 +85,5 @@ public class LoginFragment extends Fragment{
                 Log.d("User", "Go to register");
             }
         });
-
-        _loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText _userId = getView().findViewById(R.id.login_user_id);
-                EditText _password = getView().findViewById(R.id.login_password);
-                String _userIdStr = _userId.getText().toString();
-                String _passwordStr = _password.getText().toString();
-
-                if (_userIdStr.isEmpty() || _passwordStr.isEmpty()){
-                    Toast.makeText(getActivity(), "Please input Username and Password", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
-                    Log.d("User", "Go to BMI");
-                }
-            }
-        });
-
     }
 }

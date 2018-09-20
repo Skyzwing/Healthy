@@ -28,6 +28,10 @@ public class BMIFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initCalculateBMI();
+        previousPageBtn();
+    }
+    void initCalculateBMI(){
         Button _calculate = getView().findViewById(R.id.bmi_calculate_btn);
         _calculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +43,7 @@ public class BMIFragment extends Fragment {
                 TextView _bmiResult_box = getView().findViewById(R.id.bmi_Result);
 
                 if (_weightStr.isEmpty() || _heightStr.isEmpty()){
-                    Toast.makeText(getActivity(), "Please input weight and height!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please fill weight and height!", Toast.LENGTH_SHORT).show();
                     Log.d("BMI", "Please check weight and height!");
                 }
                 else{
@@ -50,6 +54,9 @@ public class BMIFragment extends Fragment {
                 }
             }
         });
+    }
+
+    void previousPageBtn(){
         Button _backBtn = getView().findViewById(R.id.previous);
         _backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

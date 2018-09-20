@@ -57,13 +57,12 @@ public class RegisterFragment extends Fragment {
                     Log.d("REGISTER", "Can't be blank");
                 }
                 else if(_newPasswordStr.equals(_newRePasswordStr)){
-                    Log.d("ss", "sss");
                     fbAuth.createUserWithEmailAndPassword(_newEmailStr, _newPasswordStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             sendVerifiedEmail(authResult.getUser());
                             Toast.makeText(getActivity(), "Register Complete", Toast.LENGTH_SHORT).show();
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).addToBackStack(null).commit();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -72,6 +71,8 @@ public class RegisterFragment extends Fragment {
                         }
                     });
                 }
+                else if (_newPasswordStr.length() < 6)
+                    Toast.makeText(getActivity(), "Please fill Password at least 6 or more ", Toast.LENGTH_SHORT).show();
             }
         });
     }

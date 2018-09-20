@@ -21,7 +21,7 @@ public class MenuFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 
     ArrayList<String> _menu = new ArrayList<>();
@@ -44,12 +44,14 @@ public class MenuFragment extends Fragment {
                 Log.d("Menu", "Click on menu = "+ _menu.get(position));
 
                 if (_menu.get(position).equals("BMI")){
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new BMIFragment()).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new BMIFragment()).addToBackStack(null).commit();
                     Log.d("USER", "Go to BMI");
                 }
                 else if (_menu.get(position).equals("Weight")){
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFragment()).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFragment()).addToBackStack(null).commit();
                 }
+                else if (_menu.get(position).equals("Sign out"))
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).addToBackStack(null).commit();
             }
         });
     }

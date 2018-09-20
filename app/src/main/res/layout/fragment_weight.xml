@@ -4,8 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:layout_width="368dp"
-        android:layout_height="551dp"
-        android:id="@+id/weight_list"/>
+    <LinearLayout
+        android:id="@+id/fragment_weight"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="50sp">
+
+        <Button
+            android:id="@+id/add_weight"
+            android:text="@string/add_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/scrollView_fragmentWeight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <ListView
+                android:layout_width="368dp"
+                android:layout_height="551dp"
+                android:id="@+id/weight_list"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
