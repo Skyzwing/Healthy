@@ -31,8 +31,8 @@ public class WeightFragment extends Fragment {
     }
 
     ArrayList<Weight> weights = new ArrayList<>();
-    private FirebaseAuth fbAuth;
-    private FirebaseFirestore fbStore;
+    FirebaseAuth fbAuth;
+    FirebaseFirestore fbStore;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -84,7 +84,7 @@ public class WeightFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFormFragment()).addToBackStack(null).commit();
-                Log.d("USER", "GO TO REGISTER");
+                Log.d("USER", "Go to Weight");
             }
         });
     }

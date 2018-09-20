@@ -23,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class LoginFragment extends Fragment{
 
     FirebaseAuth fbAuth;
-    FirebaseFirestore fbStore;
 
     @Nullable
     @Override
@@ -44,7 +43,7 @@ public class LoginFragment extends Fragment{
         _loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final EditText _userId = getView().findViewById(R.id.login_user_id);
+                EditText _userId = getView().findViewById(R.id.login_user_id);
                 EditText _password = getView().findViewById(R.id.login_password);
                 String _userIdStr = _userId.getText().toString();
                 String _passwordStr = _password.getText().toString();
@@ -58,7 +57,7 @@ public class LoginFragment extends Fragment{
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             if (fbAuth.getCurrentUser().isEmailVerified()){
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).addToBackStack(null).commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
                                 Log.d("USER", "GO TO MENU");
                             }
                             else
@@ -81,7 +80,7 @@ public class LoginFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
-                        .beginTransaction().replace(R.id.main_view, new RegisterFragment()).commit();
+                        .beginTransaction().replace(R.id.main_view, new RegisterFragment()).addToBackStack(null).commit();
                 Log.d("User", "Go to register");
             }
         });

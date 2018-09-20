@@ -33,12 +33,12 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        fbAuth = FirebaseAuth.getInstance();
         initRegisterBtn();
     }
 
     private void initRegisterBtn(){
 
-        fbAuth = FirebaseAuth.getInstance();
         Button _registerBtn = getView().findViewById(R.id.newAccount);
         _registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,23 +56,28 @@ public class RegisterFragment extends Fragment {
                     Toast.makeText(getActivity(), "Can't be blank.", Toast.LENGTH_SHORT).show();
                     Log.d("REGISTER", "Can't be blank");
                 }
-                else if(_newPasswordStr.equals(_newRePasswordStr)){
+                else if(!_newPasswordStr.equals(_newRePasswordStr)) {
+                    Toast.makeText(getActivity(), "Password and Re-Password not equals", Toast.LENGTH_SHORT).show();
+                    Log.d("REGISTER", "Password and Re-Password not equals");
+                }
+                else if (_newPasswordStr.length() < 6) {
+                    Toast.makeText(getActivity(), "Please fill Password at least 6 or more ", Toast.LENGTH_SHORT).show();
+                    Log.d("REGISTER", "Please fill password at least 6 or more");
+                }
+                else{
                     fbAuth.createUserWithEmailAndPassword(_newEmailStr, _newPasswordStr).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             sendVerifiedEmail(authResult.getUser());
-                            Toast.makeText(getActivity(), "Register Complete", Toast.LENGTH_SHORT).show();
                             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).addToBackStack(null).commit();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), "Register Fails", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-                else if (_newPasswordStr.length() < 6)
-                    Toast.makeText(getActivity(), "Please fill Password at least 6 or more ", Toast.LENGTH_SHORT).show();
             }
         });
     }

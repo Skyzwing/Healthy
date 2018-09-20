@@ -14,12 +14,16 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.a59070180.skyzwing.healthy.desll.healthy.Weight.WeightFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
-    ArrayList<String> _menu = new ArrayList<>();
+    ArrayList<String> _menu;
+    FirebaseAuth fbAuth;
+
     public MenuFragment(){
+        _menu = new ArrayList<>();
         _menu.add("BMI");
         _menu.add("Weight");
         _menu.add("Sign out");
@@ -33,6 +37,7 @@ public class MenuFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        fbAuth = FirebaseAuth.getInstance();
 
         final ArrayAdapter<String> _menuAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, _menu);
 
@@ -50,8 +55,10 @@ public class MenuFragment extends Fragment {
                 else if (_menu.get(position).equals("Weight")){
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFragment()).addToBackStack(null).commit();
                 }
-                else if (_menu.get(position).equals("Sign out"))
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).addToBackStack(null).commit();
+                else if (_menu.get(position).equals("Sign out")) {
+                    fbAuth.signOut();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();
+                }
             }
         });
     }
