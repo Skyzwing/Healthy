@@ -23,10 +23,7 @@ public class MainActivity extends AppCompatActivity {
         fbStore = FirebaseFirestore.getInstance();
 
         if(savedInstanceState == null) {
-            if (fbUser == null)
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();
-            else
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();
         }
     }
 }

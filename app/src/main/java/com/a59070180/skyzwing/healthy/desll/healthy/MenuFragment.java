@@ -18,8 +18,11 @@ import com.a59070180.skyzwing.healthy.desll.healthy.Weight.WeightFragment;
 import java.util.ArrayList;
 
 public class MenuFragment extends Fragment {
+    ArrayList<String> _menu = new ArrayList<>();
     public MenuFragment(){
-
+        _menu.add("BMI");
+        _menu.add("Weight");
+        _menu.add("Sign out");
     }
     @Nullable
     @Override
@@ -27,14 +30,9 @@ public class MenuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 
-    ArrayList<String> _menu = new ArrayList<>();
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        _menu.add("BMI");
-        _menu.add("Weight");
-        _menu.add("Sign out");
 
         final ArrayAdapter<String> _menuAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, _menu);
 

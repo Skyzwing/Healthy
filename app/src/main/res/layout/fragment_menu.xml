@@ -3,15 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <Button
-        android:id="@+id/previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/previous"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
         android:id="@+id/menu_list"
         android:layout_width="wrap_content"
