@@ -34,8 +34,8 @@ public class WeightAdapter extends ArrayAdapter<Weight>{
         TextView _status = _weightItem.findViewById(R.id.weight_item_status);
 
         _date.setText(weights.get(position).getDate());
-        _weight.setText(weights.get(position).getWeight());
-        _status.setText(weights.get(position).getWeight());
+        _weight.setText(Integer.toString((weights.get(position)).getWeight()));
+        _status.setText(weights.get(position).getStatus());
         return _weightItem;
     }
 }
