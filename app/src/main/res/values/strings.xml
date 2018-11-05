@@ -18,4 +18,12 @@
     <string name="add_weight">Add weight</string>
     <string name="date_form">Date (DD/MM/YY)</string>
     <string name="weight_form">Weight (KG)</string>
+    <string name="back">Back</string>
+    <string name="add_sleep">Add Sleep</string>
+    <string name="saveBtn">Save</string>
+    <string name="wakeup">เวลาตื่นนอน</string>
+    <string name="sleeping">เวลาเข้านอน</string>
+    <string name="date_ex">19 - 01 - 1998</string>
+    <string name="sleep_ex">23:00 - 08:00</string>
+    <string name="wake_ex">09:30</string>
 </resources>
