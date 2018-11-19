@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.a59070180.skyzwing.healthy.desll.healthy.Sleep.SleepFragment;
 import com.a59070180.skyzwing.healthy.desll.healthy.Weight.WeightFragment;
+import com.a59070180.skyzwing.healthy.desll.healthy.Workshop3.FramgentPost;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MenuFragment extends Fragment {
         _menu.add("BMI");
         _menu.add("Weight");
         _menu.add("Sleep");
+        _menu.add("Post");
         _menu.add("Sign out");
     }
     @Nullable
@@ -57,6 +59,13 @@ public class MenuFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new WeightFragment()).addToBackStack(null).commit();
                 else if (_menu.get(position).equals("Sleep"))
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new SleepFragment()).addToBackStack(null).commit();
+                else if (_menu.get(position).equals("Post")){
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.main_view, new FramgentPost())
+                            .addToBackStack(null)
+                            .commit();
+                }
                 else if (_menu.get(position).equals("Sign out")) {
                     fbAuth.signOut();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();

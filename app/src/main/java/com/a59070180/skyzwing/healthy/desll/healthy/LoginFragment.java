@@ -36,16 +36,9 @@ public class LoginFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         initLogin();
         initRegister();
-        checkCurrentUser();
 
     }
 
-    void checkCurrentUser(){
-        fbAuth = FirebaseAuth.getInstance();
-        FirebaseUser fbUser = fbAuth.getCurrentUser();
-        if (fbUser.equals(null))
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).addToBackStack(null).commit();
-    }
     void initLogin(){
         fbAuth = FirebaseAuth.getInstance();
         Button _loginBtn = getView().findViewById(R.id.login_login_btn);
