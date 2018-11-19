@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginFragment extends Fragment{
@@ -35,7 +36,15 @@ public class LoginFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         initLogin();
         initRegister();
+        checkCurrentUser();
 
+    }
+
+    void checkCurrentUser(){
+        fbAuth = FirebaseAuth.getInstance();
+        FirebaseUser fbUser = fbAuth.getCurrentUser();
+        if (fbUser.equals(null))
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).addToBackStack(null).commit();
     }
     void initLogin(){
         fbAuth = FirebaseAuth.getInstance();
